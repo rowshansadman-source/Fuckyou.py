@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello World with Font Awesome</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(145deg, #0b1a2e 0%, #1b2f4a 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      padding: 1.5rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 3.5rem;
+      padding: 4rem 5rem;
+      box-shadow: 0 30px 50px -15px rgba(0, 0, 0, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.01);
+      box-shadow: 0 40px 60px -15px rgba(0, 0, 0, 0.8), inset 0 1px 3px rgba(255, 255, 255, 0.12);
+    }
+
+    .hello-world {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .text {
+      font-size: 6.5rem;
+      font-weight: 900;
+      letter-spacing: 10px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #ffffff 0%, #aad0ff 80%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 30px rgba(100, 170, 255, 0.4);
+      line-height: 1.2;
+    }
+
+    .icon-left, .icon-right {
+      font-size: 5.5rem;
+      color: #7fc1ff;
+      filter: drop-shadow(0 0 15px #3d8bfd);
+      transition: transform 0.25s ease, color 0.25s ease, filter 0.25s ease;
+      animation: floatGlow 3s infinite alternate ease-in-out;
+    }
+
+    .icon-right {
+      animation-delay: 1.2s;
+    }
+
+    .icon-left:hover, .icon-right:hover {
+      color: #ffe484;
+      filter: drop-shadow(0 0 25px #ffbb00);
+      transform: scale(1.2) rotate(5deg);
+    }
+
+    @keyframes floatGlow {
+      0% {
+        transform: translateY(0px) scale(1);
+        filter: drop-shadow(0 0 10px #3d8bfd);
+      }
+      100% {
+        transform: translateY(-12px) scale(1.05);
+        filter: drop-shadow(0 0 30px #8ab8ff);
+      }
+    }
+
+    .greeting-box {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .greeting-btn {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 60px;
+      padding: 1rem 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: #eef5ff;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 8px 18px -8px rgba(0, 0, 0, 0.5);
+    }
+
+    .greeting-btn i {
+      font-size: 2rem;
+      color: #9bc9ff;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .greeting-btn:hover {
+      background: rgba(120, 180, 255, 0.15);
+      border-color: rgba(120, 180, 255, 0.6);
+      box-shadow: 0 0 25px rgba(70, 150, 255, 0.4);
+      color: #ffffff;
+    }
+
+    .greeting-btn:hover i {
+      color: #ffd966;
+      transform: rotate(15deg) scale(1.1);
+    }
+
+    .greeting-btn:active {
+      transform: scale(0.96);
+    }
+
+    .message-area {
+      min-height: 3.5rem;
+      font-size: 2rem;
+      font-weight: 500;
+      color: #cfe3ff;
+      text-align: center;
+      margin-top: 2rem;
+      letter-spacing: 1px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .message-area i {
+      font-size: 2.5rem;
+      color: #7fc1ff;
+      animation: pulseIcon 1.2s infinite alternate;
+    }
+
+    @keyframes pulseIcon {
+      0% { opacity: 0.7; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.15); }
+    }
+
+    .hidden-message {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .visible-message {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 700px) {
+      .card {
+        padding: 2.5rem 2rem;
+        border-radius: 2.5rem;
+      }
+      .text {
+        font-size: 4rem;
+        letter-spacing: 5px;
+      }
+      .icon-left, .icon-right {
+        font-size: 3.5rem;
+      }
+      .hello-world {
+        gap: 1rem;
+      }
+      .greeting-btn {
+        font-size: 1.3rem;
+        padding: 0.8rem 1.8rem;
+      }
+      .message-area {
+        font-size: 1.5rem;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .text {
+        font-size: 2.8rem;
+        letter-spacing: 3px;
+      }
+      .icon-left, .icon-right {
+        font-size: 2.5rem;
+      }
+      .card {
+        padding: 2rem 1.5rem;
+      }
+      .greeting-btn {
+        font-size: 1.1rem;
+        padding: 0.7rem 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="hello-world">
+      <i class="fas fa-star icon-left"></i>
+      <span class="text">HELLO WORLD</span>
+      <i class="fas fa-rocket icon-right"></i>
+    </div>
+
+    <div class="greeting-box">
+      <button class="greeting-btn" id="greetButton">
+        <i class="fas fa-hand-peace"></i>
+        <span>Greet</span>
+      </button>
+    </div>
+
+    <div class="message-area" id="messageArea">
+      <i class="fas fa-comment-dots"></i>
+      <span id="messageText">Click to say hello</span>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const greetBtn = document.getElementById('greetButton');
+      const messageText = document.getElementById('messageText');
+      const messageArea = document.getElementById('messageArea');
+
+      const greetings = [
+        { text: 'Hello, World!', icon: 'fa-hand-sparkles' },
+        { text: 'Greetings, Earth!', icon: 'fa-globe' },
+        { text: 'Hi there!', icon: 'fa-smile-wink' },
+        { text: 'Welcome!', icon: 'fa-door-open' },
+        { text: 'Have a great day!', icon: 'fa-sun' },
+        { text: 'Stay awesome!', icon: 'fa-thumbs-up' }
+      ];
+
+      let currentIndex = 0;
+
+      function updateGreeting() {
+        const greeting = greetings[currentIndex];
+        messageText.textContent = greeting.text;
+        
+        const iconElement = messageArea.querySelector('i');
+        if (iconElement) {
+          iconElement.className = `fas ${greeting.icon}`;
+        }
+
+        messageArea.classList.add('visible-message');
+        messageArea.classList.remove('hidden-message');
+
+        currentIndex = (currentIndex + 1) % greetings.length;
+      }
+
+      messageArea.classList.add('visible-message');
+
+      greetBtn.addEventListener('click', function() {
+        messageArea.classList.add('hidden-message');
+        messageArea.classList.remove('visible-message');
+
+        setTimeout(function() {
+          updateGreeting();
+        }, 150);
+      });
+
+      updateGreeting();
+    })();
+  </script>
+</body>
+</html>
